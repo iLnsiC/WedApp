@@ -2,6 +2,9 @@
 const express = require("express");
 const app = express();
 
+const db = require("./config/db");
+
+
 // Make req readable
 app.use(express.json());
 

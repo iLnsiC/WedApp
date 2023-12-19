@@ -5,17 +5,20 @@ const userSchema = mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    family: { type: Number, required: true},
+    family: { type: Number, required: true, unique: true },
     side: { type: Number, required: true, default: 0 },
     isChild: { type: Boolean, required: true, default: false },
     isMain: { type: Boolean, required: true, default: false },
     table: { type: String },
+    userName: { type: String, required: true, unique: true },
     isPresent:  [
         {
             cityHall: { type: Boolean, required: true, default: false },
+            validatedBy: { type: String },
         },
         {
             reception: { type: Boolean, required: true, default: false },
+            validatedBy: { type: String },
         },
     ],
 });

@@ -1,6 +1,7 @@
 // INIT express app
 const express = require("express");
 const app = express();
+const routes = require("./routes/index.routes");
 
 const db = require("./config/db");
 
@@ -21,5 +22,7 @@ app.use((req, res, next) => {
     );
     next();
 });
+
+app.use("/", routes);
 
 module.exports = app;

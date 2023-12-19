@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 require("dotenv").config({ path: "./config/.env" });
 mongoose
     .connect(
-        `mongodb+srv://${process.env.BD_USER}:${process.env.BD_PSW}@wedapp.y1re03c.mongodb.net/`,
+        `mongodb+srv://${process.env.BD_USER}:${process.env.BD_PSW}@wedapp.y1re03c.mongodb.net/wedApp`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,

@@ -9,6 +9,5 @@ router.delete("/:id", auth, userController.deleteAction);
 
 router.get("/list", userController.userListAction);
 router.get("/:id", userController.getOneAction);
-router.get("/:skill/works", userController.getBySkill);
 
 module.exports = router;

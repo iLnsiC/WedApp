@@ -4,6 +4,7 @@ const userController = require("../controller/user.controller");
 const auth = require("../middleware/auth");
 
 router.post("/add", auth, userController.addAction);
+router.post("/send-invitation", auth, userController.sendInvitation);
 router.put("/:id", auth, userController.editAction);
 router.delete("/:id", auth, userController.deleteAction);
 

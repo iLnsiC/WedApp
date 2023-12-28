@@ -1,10 +1,11 @@
+const nodemailer = require('nodemailer')
 const User = require("../models/user.model");
 const { generateFromEmail } = require("unique-username-generator");
 
 //Tested
 exports.userListAction = (req, res) => {
     User.find()
-        .then((user) => res.status(200).json(user))
+        .then((users) => res.status(200).json(users))
         .catch((error) => res.status(400).json({ error }));
 };
 
@@ -51,7 +52,7 @@ exports.editAction = async (req, res) => {
 
     //Tested
     User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-        .then((user) => res.status(200).json({ message: "Invité modifié !" }))
+        .then(() => res.status(200).json({ message: "Invité modifié !" }))
         .catch((error) => res.status(400).json({ error }));
 };
 
@@ -61,3 +62,59 @@ exports.deleteAction = (req, res) => {
         .then(() => res.status(200).json({ message: "Invité supprimé !" }))
         .catch((error) => res.status(400).json({ error }));
 };
+
+exports.sendInvitation = (req, res) => {
+    const { ids } = req.body;
+    let mailOptions = {
+        from: process.env.GMAIL_USER,
+        subject: "Invitation Au Mariage d'Emilie et Walid",
+    }
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        service: 'gmail',
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PWD
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    })
+
+    let status = [];
+    User.find({ _id: { $in: ids } })
+    .then(async (users) => {
+        await users.forEach(async (user) => {
+
+            mailOptions.to = user.email
+            mailOptions.html = 
+            `
+                <div style="color: black">
+                    <p>${user.firstName} ${user.lastName}, Vous êtes convié a la cérémonie de mariage d'Emilie Coussot et de Walid Zeghoudi.</p>
+                    <p>Pour plus de détails veuillez vous connecter avec votre identifiant « ${user.userName} » sur le lien suivant: <a href="#">Lien du site</a></p>
+                    <p>Une fois connecter vous devez confirmer votre présence ainsi que celle des membres de votre familles s'ils rencontres des difficulté a le faire par eux même</p>
+                    <p>Si vous rencontrer des diffuclté répondez directement a ce mail en détaillant la problématique rencontrée.</p>
+                    <p>Au plaisir de vous acceuillir. Cordialement Émilie et Walid</p>
+                </div>
+            `
+            await transporter.sendMail(mailOptions, (error, info) => {
+                const statusData = {
+                    to: user.email
+                }
+                if (error) {
+                    statusData.send = false
+                    statusData.info = error
+                    console.error(error)
+                } else {
+                    statusData.send = true
+                    statusData.info = info.response
+                }
+                status.push(statusData)
+              });
+        });
+        res.status(200).json(status)
+    })
+    .catch((error) => res.status(400).json({ error }));
+}

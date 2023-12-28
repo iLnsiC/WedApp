@@ -63,6 +63,7 @@ exports.deleteAction = (req, res) => {
         .catch((error) => res.status(400).json({ error }));
 };
 
+//Tested
 exports.sendInvitation = (req, res) => {
     const { ids } = req.body;
     let mailOptions = {

@@ -1,14 +1,98 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000&family=Lemonada:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+
+@font-face {
+    font-family: 'NomDeLaPolice';
+    src: url('/back/assets/font/ArabillaSignature-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+:root{
+    --brown: #a65925;
+    --main-bg: #F7F4F0;
+	--main-beige: #E5CBB2;
+}
 body{
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    background-color: var(--main-bg);
 }
 .arabic {
     font-family: 'Lemonada', cursive;
+}
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.main-btn{
+	padding: .5rem 1.5rem;
+	border-radius: 50px;
+	background-color: var(--main-beige);
+	width: fit-content;
+	font: normal normal 600 20px/27px 'Cinzel';
+	letter-spacing: 0.8px;
+}
+
+
+
+
+/* -------------- loader -------------- */
+
+.loader-wrapper{
+	display: inline-block;
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+    top: 0;
+    left: 0;
+	transition: all .2s ease;
+}
+
+.loader{
+	position: relative;
+	height: 80px;
+	width: 80px;
+	border-radius: 80px;
+	border: 3px solid  var(--main-beige);
+
+	top: 28%;
+	top: -webkit-calc(50% - 43px);
+	top: calc(50% - 43px);
+	left: 35%;
+	left: -webkit-calc(50% - 43px);
+	left: calc(50% - 43px);
+
+	-webkit-transform-origin: 50% 50%;
+			transform-origin: 50% 50%;
+	-webkit-animation: loader 3s linear infinite;
+			animation: loader 3s linear infinite;
+}
+
+.loader:after{
+	content: "";
+	position: absolute;
+	top: -5px;
+	left: 20px;
+	width: 11px;
+	height: 11px;
+	border-radius: 10px;
+	background-color: var(--main-beige);
+}
+
+@-webkit-keyframes loader{
+    0%{-webkit-transform:rotate(0deg);}
+    100%{-webkit-transform:rotate(360deg);}
+}
+
+@keyframes loader{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
 }

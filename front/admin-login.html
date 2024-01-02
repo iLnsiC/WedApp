@@ -18,19 +18,24 @@
     </header>
     <section id="login">
         <form>
-            <label for="userName">Entrez l'identifiant reçu par mail</label>
-            <div class="input-container">
-                <input 
-                    type="text" 
-                    required
-                    id="username" 
-                    name="userName"
-                    placeholder="usernamexxx"
-                    data-tippy-content="Inscrivez l'identifiant que vous avez reçu par email" 
-                >
-                <button class="login-btn" type="submit"><ion-icon
-                        name="arrow-forward-circle-outline"></ion-icon></button>
-            </div>
+            <label for="userName">Connexion admin</label>
+            <input 
+                type="text" 
+                required
+                id="username" 
+                name="email"
+                placeholder="admin-username"
+                data-tippy-content="Inscrivez l'identifiant que vous avez reçu par email" 
+            >
+            <input 
+                type="password" 
+                required
+                id="password" 
+                name="password"
+                placeholder="password"
+                data-tippy-content="Inscrivez l'identifiant que vous avez reçu par email" 
+            >
+            <button class="admin-login-btn main-btn" type="submit">login<ion-icon name="log-in-outline"></ion-icon></button>
             <h3 class="error"></h3>
         </form>
         <dialog>
@@ -39,7 +44,7 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="assets/JS/login.js"></script>
+    <script src="assets/JS/admin-login.js"></script>
 </body>
 
 </html>

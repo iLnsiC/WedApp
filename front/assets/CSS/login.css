@@ -1,0 +1,84 @@
+#login-body{
+    height: 100vh;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+    margin: auto;
+}
+
+.login-header{
+    color: white;
+    background: center/cover no-repeat url('/back/assets/img/pexels-amar-preciado-12954016.jpg');
+    width: 80vw;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 0.8;
+    border-radius: 50px;
+    position: relative;
+    height: fit-content;
+    overflow: hidden;
+}
+.login-header div{
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+}
+h2{
+    font-family: 'NomDeLaPolice', serif;
+    font-size: 40px;
+}
+h1{
+    font-weight: 400;
+}
+.error{
+    color: #bc7362;
+    font-size: 15px;
+    font-weight: 300;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#login form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    gap: 10px;
+}
+
+input[type=text],
+input[type=password]{
+    border: none;
+    outline: none;
+    padding: .8rem;
+    padding-right: 45px;
+    border-radius: 50px;
+    font-size: 15px;
+}
+input[type=text]:focus-within,
+input[type=password]:focus-within{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300;
+}
+.input-container{
+    position: relative;
+}
+.input-container button{
+    position: absolute;
+    top: -4px;
+    right: -3px;
+    font-size: 50px;
+}
+.input-container input{
+    width: 100%;
+}
+
+/* ADMIN LOGIN */
+.admin-login-btn{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}

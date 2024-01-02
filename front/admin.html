@@ -1,11 +1,117 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admine MODE</title>
+    <link rel="stylesheet" href="assets/CSS/style.css">
+    <link rel="stylesheet" href="assets/CSS/admin.css">
+    <title>W & E Wedding | Admin</title>
 </head>
+
 <body>
-    
+    <header>
+        <nav>
+            <button>Logout</button>
+        </nav>
+    </header>
+    <main>
+        <section id="toggle-sections">
+            <button class="toggle-btn active" data-target="guest">Liste des invités</button>
+            <button class="toggle-btn" data-target="table">Liste des tables</button>
+        </section>
+        <section id="guest" class="toggled active">
+            <div class="head-action">
+                <button>Ajouter un invité</button>
+                <button>envoyer des Emails</button>
+            </div>
+            <article class="tableau header">
+                <div>Nom</div>
+                <div>Groupe</div>
+                <div>Email</div>
+                <div>Coté</div>
+                <div>Responsable</div>
+                <div>Nom d'utilisateur</div>
+                <div>Table</div>
+                <div class="splited">
+                    <div>Présence</div>
+                    <div>
+                        <div>Mairie</div>
+                        <div>Resto</div>
+                    </div>
+                </div>
+                <div>Action</div>
+            </article>
+            <div id="tableau-content">
+                <article class="tableau line">
+                    <div class="name">
+                        <div>Nom <span>icon</span></div>
+                    </div>
+                    <div>Groupe</div>
+                    <div>Email</div>
+                    <div>Side</div>
+                    <div>responsable</div>
+                    <div>UserName</div>
+                    <div>Table</div>
+                    <div class="splited">
+                        <div><input type="checkbox"></div>
+                        <div><input type="checkbox"></div>
+                    </div>
+                    <div class="splited action-btn">
+                        <div><button data-tippy-content="Edit"><ion-icon name="create-outline"></ion-icon></button></div>
+                        <div><button data-tippy-content="Send e-mail"><ion-icon name="send-outline"></ion-icon></button></div>
+                        <div><button data-tippy-content="Delete"><ion-icon name="trash-outline"></ion-icon></button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="table" class="toggled">
+            <div class="head-action">
+                <button class="addAction">Ajouter une table</button>
+            </div>
+            <article class="tableau header">
+                <div>Nom</div>
+                <div>Groupe</div>
+                <div>Personnes</div>
+                <div class="splited">
+                    <div>Places</div>
+                    <div>
+                        <div>Totale</div>
+                        <div>Reste</div>
+                    </div>
+                </div>
+                <div>Action</div>
+            </article>
+            <div id="tableau-content">
+                <article class="tableau line">
+                    <div>Nom</div>
+                    <div class="family">1,2,3</div>
+                    <div>Personnes, Personnes, Personnes, Personnes, Personnes,</div>
+                    <div class="splited">
+                        <div>10</div>
+                        <div>20</div>
+                    </div>
+                    <div class="splited action-btn">
+                        <div><button data-tippy-content="Edit"><ion-icon name="create-outline"></ion-icon></button></div>
+                        <div><button data-tippy-content="Send e-mail"><ion-icon name="send-outline"></ion-icon></button></div>
+                        <div><button data-tippy-content="Delete"><ion-icon name="trash-outline"></ion-icon></button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Development -->
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <!-- Production -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="assets/JS/script.js"></script>
+
+    <script src="assets/JS/admin.js"></script>
 </body>
+
 </html>

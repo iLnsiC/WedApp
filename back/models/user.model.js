@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema({
     isMain: { type: Boolean, required: true, default: false },
     table: { type: String },
     userName: { type: String, required: true, unique: true },
+    diet: { type: String,},
     isPresent: {
         cityHall: { type: Boolean, required: true, default: false },
         cityHallValidatedBy: { type: String },

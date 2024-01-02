@@ -85,16 +85,16 @@ exports.sendInvitation = (req, res) => {
     })
 
     let status = [];
-    User.find({ _id: { $in: ids } })
+    const payload = ids ? { _id: { $in: ids } }: null
+    User.find(payload)
     .then(async (users) => {
         await users.forEach(async (user) => {
-
             mailOptions.to = user.email
             mailOptions.html = 
             `
                 <div style="color: black">
                     <p>${user.firstName} ${user.lastName}, Vous êtes convié a la cérémonie de mariage d'Emilie Coussot et de Walid Zeghoudi.</p>
-                    <p>Pour plus de détails veuillez vous connecter avec votre identifiant « ${user.userName} » sur le lien suivant: <a href="#">Lien du site</a></p>
+                    <p>Pour plus de détails veuillez vous connecter avec votre identifiant « <b>${user.userName}</b> » sur le lien suivant: <a href="https://www.zeghoudi-mohammed-walid.fr/">Lien du site</a></p>
                     <p>Une fois connecter vous devez confirmer votre présence ainsi que celle des membres de votre familles s'ils rencontres des difficulté a le faire par eux même</p>
                     <p>Si vous rencontrer des diffuclté répondez directement a ce mail en détaillant la problématique rencontrée.</p>
                     <p>Au plaisir de vous acceuillir. Cordialement Émilie et Walid</p>

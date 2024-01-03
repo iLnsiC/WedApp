@@ -8,30 +8,30 @@
     margin: auto;
 }
 
-.login-header{
+#login-header{
     color: white;
     background: center/cover no-repeat url('/back/assets/img/pexels-amar-preciado-12954016.jpg');
     width: 80vw;
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
-    line-height: 0.8;
     border-radius: 50px;
     position: relative;
     height: fit-content;
     overflow: hidden;
 }
-.login-header div{
+#login-header .header-title{
     backdrop-filter: blur(3px);
     background-color: rgba(0, 0, 0, 0.1);
     padding: 15px 0;
 }
-h2{
+#login-header .header-title h2{
     font-family: 'NomDeLaPolice', serif;
     font-size: 40px;
 }
-h1{
+#login-header .header-title h1{
     font-weight: 400;
+    font-size: 30px;
 }
 .error{
     color: #bc7362;

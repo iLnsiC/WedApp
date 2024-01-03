@@ -17,12 +17,20 @@
 :root{
     --brown: #a65925;
     --main-bg: #F7F4F0;
+	--brown-bg: #79645B;
 	--main-beige: #E5CBB2;
+	--text-gray: #707070;
 }
 body{
     font-family: 'Cinzel', serif;
     font-weight: 400;
     background-color: var(--main-bg);
+	font-size: 15px;
+}
+.wrapper{
+	max-width: 500px;
+	margin: auto;
+	padding: 20px;
 }
 .arabic {
     font-family: 'Lemonada', cursive;
@@ -40,9 +48,92 @@ button {
 	font: normal normal 600 20px/27px 'Cinzel';
 	letter-spacing: 0.8px;
 }
+.bold{
+	font-weight: bold;
+}
+.section-title{
+	font-size: 15px;
+	text-align: center;
+	margin: 25px auto;
+}
+.text-white{
+	color: white;
+}
+.section-pastille{
+	height: 110px;
+	border-radius: 50px;
+	width: 100%;
+	background: center -110px/cover no-repeat;
+}
 
+/* -------------- Header -------------- */
+.header-title {
+	line-height: 0.6;
+}
+.header-title h2{
+	font-family: 'NomDeLaPolice', serif;
+	font-size: 50px;
+	font-weight: 400;
+}
+.header-title h1{
+	font-weight: 400;
+	font-size: 45px;
+}
+.main-header {
+	text-align: center;
+	margin-top: 60px;
+}
+.main-header .header-title{
+	font-size: 20px;
+	color: var(--text-gray);
+}
+.main-picture{
+	margin: 40px auto;
+}
 
+/* -------------- Precense -------------- */
+#presence{
+	background: var(--brown-bg);
+}
+#presence .section-pastille{
+	background-image: url("/back/assets/img/pexels-amar-preciado-12954016.jpg");
+}
+#presence form{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 15px;
+}
+.form-prencese{
+	display: flex;
+	justify-content: space-around;
+}
+.diet-select{
+	display: flex;
+	justify-content: space-around;
+}
+.diet-select select{
+	border-radius: 10px;
+}
+.diet-select select option{
+	width: 100%;
+}
+.diet-select > * {
+	flex: 1;
+}
+.form-textarea {
+	display: flex;
+	flex-direction: column;
+}
+.form-textarea textarea{
+	text-align: left;
+	resize: none;
+	padding: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	border-radius: 10px;
 
+}
+#presence .main-btn{margin: auto}
 
 /* -------------- loader -------------- */
 

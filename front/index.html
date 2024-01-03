@@ -7,16 +7,73 @@
     <title>W & E Wedding</title>
 </head>
 <body>
-    <div class="loader-wrapper">
-        <div class="loader"></div>
-    </div>
-    <header>
+<!--    <div class="loader-wrapper">-->
+<!--        <div class="loader"></div>-->
+<!--    </div>-->
+    <header class="main-header wrapper">
+        <div class="header-title">
+            <h2>Save the date</h2>
+            <h1>Emilie & Walid</h1>
+        </div>
+        <img class="main-picture" src="/back/assets/logo/Groupe36.svg" alt="salle d'invitation"/>
+        <div class="header-text">
+            Vous êtes invités au mariage de
+            <span class="bold">Walid et Emilie</span>
+            Qui se déroulera le
+            <span class="bold">20 avril 2024</span>
+            À partir de
+            <span class="bold">14h</span>
+            à la mairie d'<span class="bold">Ozoir-la-ferrière</span>
+        </div>
     </header>
     <main>
+        <section id="presence" class="text-white">
+            <div class="wrapper">
+                <div class="section-pastille"></div>
+                <h2 class="section-title ">Je confirme ma présence</h2>
+                <form id="presence-form">
+                    <div class="form-prencese">
+                        <label for="cityHall">
+                            À la mairie
+                            <input type="checkbox" name="cityHall" id="cityHall" />
+                        </label>
+                        <label for="reception">
+                            À la reception
+                            <input type="checkbox" name="reception" id="reception" />
+                        </label>
+                    </div>
+                    <div class="diet-select">
+                        <label for="diet">Je suis un régime</label>
+                        <select name="diet" id="diet">
+                            <option value=""></option>
+                            <option value="Vegan">Végan</option>
+                            <option value="Vegetarien">Végétarien</option>
+                        </select>
+                    </div>
+                    <div class="form-textarea">
+                        <label for="moreInfo">J’ai des allergies ou un régime spécial <br>(Précisez le/léquels)</label>
+                        <textarea name="moreInfo" id="moreInfo" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="main-btn">Valider</button>
+                </form>
+            </div>
+        </section>
+        <section id="group">
+            <div class="wrapper">
+                <h2 class="section-title">Les membres de ma famille</h2>
+
+            </div>
+        </section>
+        <section id="planning">
+            <div class="wrapper"></div>
+        </section>
+        <section id="menu">
+            <div class="wrapper"></div>
+        </section>
 
     </main>
     <footer>
-        
+        <h3 class="footer-title">Nous avons hâte de te retrouver !</h3>
     </footer>
     <script src="assets/JS/script.js"></script>
 </body>

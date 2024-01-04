@@ -10,7 +10,7 @@
 
 #login-header{
     color: white;
-    background: center/cover no-repeat url('/back/assets/img/pexels-amar-preciado-12954016.jpg');
+    background: center/cover no-repeat url('../img/pexels-amar-preciado-12954016.jpg');
     width: 80vw;
     max-width: 100%;
     margin: 0 auto;

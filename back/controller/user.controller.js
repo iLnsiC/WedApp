@@ -4,6 +4,7 @@ const { generateFromEmail } = require("unique-username-generator");
 
 //Tested
 exports.userListAction = (req, res) => {
+    console.log(req.headers.authorization.split(" ")[1]);
     User.find()
         .then((users) => res.status(200).json(users))
         .catch((error) => res.status(400).json({ error }));
@@ -13,6 +14,12 @@ exports.userListAction = (req, res) => {
 exports.getOneAction = (req, res) => {
     User.findOne({ _id: req.params.id })
         .then((user) => res.status(200).json(user))
+        .catch((error) => res.status(404).json({ error }));
+};
+//Tested
+exports.isAuthAction = (req, res) => {
+    User.findOne({ _id: req.body.thisUser })
+        .then((user) => res.status(200).json({userId: req.body.thisUser}))
         .catch((error) => res.status(404).json({ error }));
 };
 

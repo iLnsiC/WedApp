@@ -5,7 +5,7 @@ const tableRoutes = require("./table.routes");
 const usersRoutes = require("./user.routes");
 
 router.use("/auth", logRoutes);
-router.use("/admin/table", tableRoutes);
-router.use("/admin/user", usersRoutes);
+router.use("/table", tableRoutes);
+router.use("/user", usersRoutes);
 
 module.exports = router;

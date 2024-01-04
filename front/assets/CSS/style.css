@@ -81,6 +81,10 @@ section {
 	z-index: -1;
 	object-position: top;
 }
+.back-btn{
+	font-size: 30px;
+}
+
 
 /* -------------- Header -------------- */
 .header-title {
@@ -117,7 +121,8 @@ section {
 	justify-content: space-around;
 	margin: 20px auto;
 }
-/* -------------- Precense -------------- */
+
+/* -------------- Planning -------------- */
 #planning {
 	background-color: var(--main-beige);
 }
@@ -132,6 +137,7 @@ section {
 #planning .event .description{
 	width: 150px;
 }
+
 /* -------------- Precense -------------- */
 #presence{
 	background: var(--brown-bg);
@@ -176,15 +182,39 @@ section {
 }
 #presence .main-btn{margin: auto}
 
+/* -------------- footer -------------- */
+#group{
+	margin: 0;
+	background-color: var(--brown-bg);
+}
+#group .member{
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+#group .member p{
+	flex: auto;
+}
+#group .member label{
+	flex: 1;
+	min-width: fit-content;
+}
+/* -------------- footer -------------- */
+footer h3{
+	text-align: center;
+}
+
 /* -------------- loader -------------- */
 
 .loader-wrapper{
+	background-color: var(--main-bg);
 	display: inline-block;
 	height: 100vh;
 	width: 100vw;
-	position: absolute;
-    top: 0;
-    left: 0;
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 3;
 	transition: all .2s ease;
 }
 

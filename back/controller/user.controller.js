@@ -16,6 +16,21 @@ exports.getOneAction = (req, res) => {
         .then((user) => res.status(200).json(user))
         .catch((error) => res.status(404).json({ error }));
 };
+
+//Tested
+exports.getUserGroup = (req, res) => {
+    User.find({ family: req.params.groupId })
+        .then((users) => {
+            users.forEach((user, i) => {
+                if (req.params.id == user._id) {
+                    users.splice(i, 1)
+                }
+            })
+            res.status(200).json(users)
+        })
+        .catch((error) => res.status(404).json({ error }));
+};
+
 //Tested
 exports.isAuthAction = (req, res) => {
     User.findOne({ _id: req.body.thisUser })
@@ -71,7 +86,7 @@ exports.deleteAction = (req, res) => {
 };
 
 //Tested
-exports.sendInvitation = (req, res) => {
+exports.sendInvitation = async (req, res) => {
     const { ids } = req.body;
     let mailOptions = {
         from: process.env.GMAIL_USER,

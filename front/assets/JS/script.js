@@ -56,7 +56,8 @@ function loadHeader(userData){
         </div>
         <img class="main-picture" src="assets/logo/Groupe36.svg" alt="salle d'invitation"/>
         <div class="header-text">
-            Vous êtes invités au mariage de
+            <span class="bold">${userData.firstName} ${userData.lastName}</span> <br>
+            Tu es invité au mariage de
             <span class="bold">Walid et Emilie</span>
             Qui se déroulera le
             <span class="bold">20 avril 2024</span>
@@ -158,9 +159,10 @@ function loadPresence(userData){
 }
 
 function loadGroup(userData){
-    const groupSection = document.querySelector('#group');
-    const groupTemplate = 
-    `
+    if (userData.isMain){
+        const groupSection = document.querySelector('#group');
+        const groupTemplate =
+            `
         <div class="wrapper">
             <h2 class="section-title">Les membres de ma famille</h2>
             <form id="members">
@@ -178,7 +180,8 @@ function loadGroup(userData){
             </div>
         </div>
     `
-    groupSection.insertAdjacentHTML('beforeend', groupTemplate);
+        groupSection.insertAdjacentHTML('beforeend', groupTemplate);
+    }
 }
 
 async function loadPage() {

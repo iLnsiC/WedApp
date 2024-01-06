@@ -9,14 +9,13 @@
 </head>
 
 <body>
-    <div class="loader-wrapper">
-        <div class="loader"></div>
-    </div>
     <header class="main-header wrapper">
     </header>
     <main>
+        <div class="loader-wrapper">
+            <div class="loader"></div>
+        </div>
         <section id="planning">
-
         </section>
         <section id="theme">
         </section>
@@ -25,13 +24,62 @@
         <section id="group" class="text-white">
         </section>
         <section id="recap">
+            <div class="recap-bg">
+                <div class="back-drop">
+                    <div class="wrapper">
+                        <div class="header-title">
+                            <h2>Save the date</h2>
+                            <h1>Emilie & Walid</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="header-text">
+                    <span class="bold">${userData.firstName} ${userData.lastName}</span> <br>
+                    Tu es invité au mariage de
+                    <span class="bold">Walid et Emilie</span>
+                    Qui se déroulera le
+                    <span class="bold">20 avril 2024</span>
+                    À partir de
+                    <span class="bold">14h</span>
+                    à la mairie d'<span class="bold">Ozoir-la-ferrière</span>
+                </div>
+                <div class="recap-menu">
+                    <div class="trace">
+                        <div>
+                            RDV
+                            <h3>Le Garden</h3>
+                            Saint-Maur-Des-Fosses 94100
+                        </div>
+                    </div>
+                    <div class="center-card">
+                        <div>
+                            <img src="assets/logo/diner.svg" alt="cloche"/>
+                            <h3>Menu</h3>
+                            <p>Vegetarien</p>
+                        </div>
+                    </div>
+                    <div class="trace">
+                        <div>
+                            <h3>Table</h3>
+                            <p>Fleurie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+        <div class="snackbar-holder">
+        </div>
     </main>
     <footer class="wrapper">
         <h3 class="footer-title">Nous avons hâte de te retrouver !</h3>
-        <button class="back-btn" type="submit" data-tippy-content="Déconnexion">
-            <ion-icon name="arrow-back-circle-outline"></ion-icon>
-        </button>
+        <div class="footer-action">
+            <button class="back-btn" data-tippy-content="Déconnexion">
+                <ion-icon name="log-out-outline"></ion-icon>
+            </button>
+            <button class="main-btn">Resume d'invitation</button>
+        </div>
     </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

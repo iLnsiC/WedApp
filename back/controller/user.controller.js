@@ -4,7 +4,6 @@ const { generateFromEmail } = require("unique-username-generator");
 
 //Tested
 exports.userListAction = (req, res) => {
-    console.log(req.headers.authorization.split(" ")[1]);
     User.find()
         .then((users) => res.status(200).json(users))
         .catch((error) => res.status(400).json({ error }));
@@ -21,12 +20,19 @@ exports.getOneAction = (req, res) => {
 exports.getUserGroup = (req, res) => {
     User.find({ family: req.params.groupId })
         .then((users) => {
+            let group = [];
             users.forEach((user, i) => {
                 if (req.params.id == user._id) {
-                    users.splice(i, 1)
+                } else {
+                    group.push({
+                        id: user._id,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        isPresent: user.isPresent
+                    })
                 }
             })
-            res.status(200).json(users)
+            res.status(200).json(group)
         })
         .catch((error) => res.status(404).json({ error }));
 };
@@ -77,6 +83,12 @@ exports.editAction = async (req, res) => {
         .then(() => res.status(200).json({ message: "Invité modifié !" }))
         .catch((error) => res.status(400).json({ error }));
 };
+
+//Tested
+exports.editGroupAction = async (req, res) => {
+
+};
+
 
 //Tested
 exports.deleteAction = (req, res) => {

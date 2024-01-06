@@ -109,6 +109,8 @@ section {
 }
 .main-picture{
 	margin: 40px auto;
+	width: 100%;
+	max-width: 350px;
 }
 
 /* -------------- Theme -------------- */
@@ -127,7 +129,7 @@ section {
 	background-color: var(--main-beige);
 }
 #planning .section-pastille{
-	background-image: url("../img/pexels-amar-preciado-12954017.jpg");
+	background-image: url("../img/pexels-amar-preciado-12954017.webp");
 }
 #planning .event{
 	display: flex;
@@ -143,7 +145,7 @@ section {
 	background: var(--brown-bg);
 }
 #presence .section-pastille{
-	background-image: url("../img/pexels-amar-preciado-12954016.jpg");
+	background-image: url("../img/pexels-amar-preciado-12954016.webp");
 }
 #presence form{
 	display: flex;
@@ -211,11 +213,11 @@ footer h3{
 	display: inline-block;
 	height: 100vh;
 	width: 100vw;
-	position: sticky;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 3;
-	transition: all .2s ease;
+	transition: all .3s ease;
 }
 
 .loader{

@@ -6,9 +6,12 @@ function redirect() {
         "/";
     window.location.replace(`${origin}login.html`);
 }
-function removeLoader(){
+function removeLoader() {
     const loader = document.querySelector('.loader-wrapper')
-    loader ? loader.remove() : null;
+    loader.style.opacity = 0;
+    setTimeout(() => {
+        loader ? loader.remove() : null;
+    }, 500);
 }
 
 async function checkAuthorized() {
@@ -37,24 +40,30 @@ async function checkAuthorized() {
 
     return userId;
 }
-async function getUserData(userId){
-    let userData = null; 
-    await fetch(`http://localhost:3085/api/user/${userId}`)
+async function getUserData(userId) {
+    let userData = null;
+    await fetch(`http://localhost:3085/api/user/${userId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            Authorization: `Bearer ${sessionStorage.token}`,
+        },
+    })
         .then(res => res.json())
         .then(data => userData = data)
         .catch(err => console.error(err))
     return userData
 }
 
-function loadHeader(userData){
+function loadHeader(userData) {
     const header = document.querySelector('header');
-    const headerTemplate = 
-    `
+    const headerTemplate =
+        `
         <div class="header-title">
             <h2>Save the date</h2>
             <h1>Emilie & Walid</h1>
         </div>
-        <img class="main-picture" src="assets/logo/Groupe36.svg" alt="salle d'invitation"/>
+        <img class="main-picture" src="assets/img/Groupe36.webp" alt="salle d'invitation" width="300"/>
         <div class="header-text">
             <span class="bold">${userData.firstName} ${userData.lastName}</span> <br>
             Tu es invité au mariage de
@@ -65,15 +74,15 @@ function loadHeader(userData){
             <span class="bold">14h</span>
             à la mairie d'<span class="bold">Ozoir-la-ferrière</span>
         </div>
-        <img class="main-picture" src="assets/img/calendrier.svg" alt="salle d'invitation"/>
+        <img class="main-picture" src="assets/img/calendrier.webp" alt="salle d'invitation"/>
     `
     header.insertAdjacentHTML('beforeend', headerTemplate);
 }
 
-function loadPlanning(userData){
+function loadPlanning(userData) {
     const planningSection = document.querySelector('#planning');
-    const planningTemplate = 
-    `
+    const planningTemplate =
+        `
         <div class="wrapper">
             <div class="section-pastille"></div>
             <h2 class="section-title">Déroulé de la journée</h2>
@@ -102,10 +111,10 @@ function loadPlanning(userData){
     planningSection.insertAdjacentHTML('beforeend', planningTemplate);
 }
 
-function loadTheme(userData){
+function loadTheme(userData) {
     const themeSection = document.querySelector('#theme');
-    const themeTemplate = 
-    `
+    const themeTemplate =
+        `
         <div class="wrapper">
             <h2 class="section-title">Thème & Couleurs</h2>
             <h3>Naturel & Romantique</h3>
@@ -121,10 +130,11 @@ function loadTheme(userData){
     themeSection.insertAdjacentHTML('beforeend', themeTemplate);
 }
 
-function loadPresence(userData){
+function loadPresence(userData) {
+    console.log(userData.isPresent);
     const presenceSection = document.querySelector('#presence');
-    const presenceTemplate = 
-    `
+    const presenceTemplate =
+        `
         <div class="wrapper">
             <div class="section-pastille"></div>
             <h2 class="section-title ">Je confirme ma présence</h2>
@@ -132,11 +142,11 @@ function loadPresence(userData){
                 <div class="form-prencese">
                     <label for="cityHall">
                         À la mairie
-                        <input type="checkbox" name="cityHall" id="cityHall" />
+                        <input type="checkbox" name="cityHall" id="cityHall" ${userData.isPresent.cityHall ? 'checked' : null}/>
                     </label>
                     <label for="reception">
                         À la reception
-                        <input type="checkbox" name="reception" id="reception" />
+                        <input type="checkbox" name="reception" id="reception" ${userData.isPresent.reception ? 'checked' : null}/>
                     </label>
                 </div>
                 <div class="diet-select">
@@ -158,8 +168,8 @@ function loadPresence(userData){
     presenceSection.insertAdjacentHTML('beforeend', presenceTemplate);
 }
 
-function loadGroup(userData){
-    if (userData.isMain){
+function loadGroup(userData) {
+    if (userData.isMain) {
         const groupSection = document.querySelector('#group');
         const groupTemplate =
             `

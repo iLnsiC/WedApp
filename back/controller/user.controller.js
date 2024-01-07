@@ -72,7 +72,7 @@ exports.editAction = async (req, res) => {
     if (req.body.isPresent) {
         const user = await User.findOne({ _id: req.params.id });
         const oldIsPresent = user.isPresent;
-        for (var key in req.body.isPresent) {
+        for (let key in req.body.isPresent) {
             oldIsPresent[key] = req.body.isPresent[key];
         }
         req.body.isPresent = oldIsPresent
@@ -86,7 +86,25 @@ exports.editAction = async (req, res) => {
 
 //Tested
 exports.editGroupAction = async (req, res) => {
-
+    const {thisUser, ...payload} = req.body
+    let successMessage = 'Les informations des invites suivant ont ete mises a jours : '
+    let errorMessage = 'Une erreur s\'est produite avec les invites suivants : '
+    let errorCount = 0
+    for (let key in payload) {
+        req.body = {
+            isPresent: payload[key]
+        }
+        await User.updateOne({ _id: key }, { ...req.body, _id: key })
+            .then((user) => {
+                console.log(user)
+                successMessage += `[${user.firstName} ${user.lastName}]`
+            } )
+            .catch((error) => {
+                errorCount++
+                errorMessage += '[ ' + key + ' ]'
+            });
+    }
+    res.status(200).json({ successMessage:  successMessage, errorMessage: errorMessage, errorCount: errorCount})
 };
 
 

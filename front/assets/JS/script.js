@@ -85,7 +85,24 @@ function updateGroupAction(groupPresence) {
     submitBtn.addEventListener('click', (event) => {
         event.preventDefault()
         const { userId, ...payload} = groupPresence
-
+        console.log(payload)
+        fetch(`http://localhost:3085/api/user/${userId}/group`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+                Authorization: `Bearer ${sessionStorage.token}`,
+            },
+            body: JSON.stringify(payload),
+        })
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                snackBar('Merci de nous avoir communiquer la disponibilite de vos membres de famille')
+                if (data.errorCount > 0) {
+                    snackBar('Une erreur s\'est produite veuillez reessayer de nouveau <br> ou de communiquer directement avec nous')
+                }
+            }).catch(err => console.error(err))
     })
 }
 
@@ -268,7 +285,9 @@ function loadGroup(userData, groupData) {
         groupData.map(membre => {
             groupPresence[membre.id] = {
                 cityHall: membre.isPresent.cityHall,
+                cityHallValidatedBy: userData._id,
                 reception: membre.isPresent.reception,
+                receptionValidatedBy: userData._id,
             }
             membreList += `
                 <div class="member" id="id-user">
@@ -299,6 +318,7 @@ function loadGroup(userData, groupData) {
         updateGroupAction(groupPresence)
     }
 }
+
 function hideSection(isRecap = false) {
     const header = document.querySelector('header')
     const sections = document.querySelectorAll('section')
@@ -306,24 +326,28 @@ function hideSection(isRecap = false) {
     const recapBtn = document.querySelector('#recap-btn')
     if (isRecap) {
         header.style.display = 'none'
+        recapBtn.style.display = 'none'
+        backBtn.style.display = 'block'
         sections.forEach(section => {
-            if (!(section.id === 'recap')){
-                section.style.display = 'none'
-            } else {
-                section.style.display = 'block'
-            }
+            section.style.display = section.id === 'recap' ? 'block' : 'none'
         })
-
     } else {
+        recapBtn.style.display = 'block'
         header.style.display = 'block'
+        backBtn.style.display = 'none'
         sections.forEach(section => {
-            if (!(section.id === 'recap')){
-                section.style.display = 'block'
-            } else {
-                section.style.display = 'none'
-            }
+            section.style.display = section.id === 'recap' ? 'none' : 'block'
         })
     }
+}
+
+function backToForm() {
+    const backBtn = document.querySelector('#back-btn')
+    const recapSection = document.querySelector('#recap')
+    backBtn.addEventListener('click', () => {
+        hideSection()
+        recapSection.innerHTML = ''
+    })
 }
 
 async function getRecap(userId) {
@@ -406,6 +430,7 @@ async function loadPage() {
     loadPresence(userData);
     loadGroup(userData, groupData);
     await getRecap(userId);
+    backToForm()
     removeLoader()
 }
 

@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 router.post("/add", auth, userController.addAction);
 router.post("/send-invitation", auth, userController.sendInvitation);
 router.put("/:id", auth, userController.editAction);
+router.put("/:id/group", auth, userController.editGroupAction);
 router.delete("/:id", auth, userController.deleteAction);
 
 router.get("/list", userController.userListAction);

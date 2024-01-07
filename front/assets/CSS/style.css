@@ -296,6 +296,7 @@ footer h3{
 #recap .center-card{
 	background-color: var(--main-beige);
 	border-radius: 10px;
+	padding: 5px;
 }
 /* -------------- loader -------------- */
 

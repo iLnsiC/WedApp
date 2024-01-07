@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
     side: { type: Number, required: true, default: 0 },
     isChild: { type: Boolean, required: true, default: false },
     isMain: { type: Boolean, required: true, default: false },
-    table: { type: String },
+    table: { type: String, default: '' },
     userName: { type: String, required: true, unique: true },
     diet: { type: String, default: "" },
     restriction: { type: String, default: "" },

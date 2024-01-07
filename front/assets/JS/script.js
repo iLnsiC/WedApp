@@ -275,11 +275,11 @@ function loadGroup(userData, groupData) {
                     <p>${membre.firstName} ${membre.lastName}</p>
                     <label for="cityHall-${membre.id}">
                         <input type="checkbox" name="cityHall-${membre.id}" id="cityHall-${membre.id}" ${membre.isPresent.cityHall ? 'checked' : ''}/>
-                        À la mairie
+                        mairie
                     </label>
                     <label for="reception-${membre.id}">
                         <input type="checkbox" name="reception-${membre.id}" id="reception-${membre.id}" ${membre.isPresent.reception ? 'checked' : ''}/>
-                        Au dîner
+                        dîner
                     </label>
                 </div>`
         })
@@ -300,6 +300,70 @@ function loadGroup(userData, groupData) {
     }
 }
 
+async function getRecap(userId) {
+    const recapBtn = document.querySelector('#recap-btn')
+    const recapSection = document.querySelector('#recap')
+    recapBtn.addEventListener('click', async () => {
+        const userData = await getUserData(userId);
+        let message = 'Actuellement vous ne semblez pas pouvoir y participer.<br> Si des changements ont lieu vous pouvez nous reconfirmer votre presence sur votre espace invites'
+        const table = userData.table
+        const diet = userData.diet ? userData.diet : 'classique'
+        let address = ''
+        if (userData.isPresent.reception) {
+            address = '<h3>Le Garden</h3> Saint-Maur-Des-Fosses 94100'
+            message = `À partir de <span class="bold">18h30</span> au restaurent le Garden <span class="bold">Saint-Maure-Des-Fosses</span>`
+            if (userData.isPresent.cityHall) {
+                address = '<h3>La mairie</h3> Ozoir-la-ferrière 77330'
+                message = `À partir de <span class="bold">14h</span> à la mairie d'<span class="bold">Ozoir-la-ferrière</span>`
+            }
+        }
+        const recapTemplate =
+            `
+                <div class="recap-bg">
+                    <div class="back-drop">
+                        <div class="wrapper">
+                            <div class="header-title">
+                                <h2>Save the date</h2>
+                                <h1>Emilie & Walid</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="header-text">
+                        <span class="bold">${userData.firstName} ${userData.lastName}</span> <br>
+                        Tu es invité au mariage de
+                        <span class="bold">Walid et Emilie</span>
+                        Qui se déroulera le
+                        <span class="bold">20 avril 2024</span>
+                        ${message}
+                    </div>
+                    <div class="recap-menu">
+                        <div class="trace">
+                            <div>
+                                RDV
+                                ${address}
+                            </div>
+                        </div>
+                        <div class="center-card">
+                            <div>
+                                <img src="assets/logo/diner.svg" alt="cloche"/>
+                                <h3>Menu</h3>
+                                <p>${diet}</p>
+                            </div>
+                        </div>
+                        <div class="trace">
+                            <div>
+                                <h3>Table</h3>
+                                <p>${table}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        recapSection.insertAdjacentHTML('beforeend', recapTemplate);
+    })
+}
 async function loadPage() {
     const userId = await checkAuthorized();
     if (!userId) {
@@ -313,6 +377,7 @@ async function loadPage() {
     loadTheme(userData);
     loadPresence(userData);
     loadGroup(userData, groupData);
+    await getRecap(userId);
     removeLoader()
 }
 

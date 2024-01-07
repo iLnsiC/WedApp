@@ -252,6 +252,10 @@ footer h3{
 	display: flex;
 	justify-content: space-between;
 }
+.footer-action #back-btn{
+	display: none;
+}
+
 
 /* -------------- Recap -------------- */
 #recap{

@@ -299,6 +299,32 @@ function loadGroup(userData, groupData) {
         updateGroupAction(groupPresence)
     }
 }
+function hideSection(isRecap = false) {
+    const header = document.querySelector('header')
+    const sections = document.querySelectorAll('section')
+    const backBtn = document.querySelector('#back-btn')
+    const recapBtn = document.querySelector('#recap-btn')
+    if (isRecap) {
+        header.style.display = 'none'
+        sections.forEach(section => {
+            if (!(section.id === 'recap')){
+                section.style.display = 'none'
+            } else {
+                section.style.display = 'block'
+            }
+        })
+
+    } else {
+        header.style.display = 'block'
+        sections.forEach(section => {
+            if (!(section.id === 'recap')){
+                section.style.display = 'block'
+            } else {
+                section.style.display = 'none'
+            }
+        })
+    }
+}
 
 async function getRecap(userId) {
     const recapBtn = document.querySelector('#recap-btn')
@@ -361,9 +387,11 @@ async function getRecap(userId) {
                     </div>
                 </div>
             `
+        hideSection(true)
         recapSection.insertAdjacentHTML('beforeend', recapTemplate);
     })
 }
+
 async function loadPage() {
     const userId = await checkAuthorized();
     if (!userId) {
